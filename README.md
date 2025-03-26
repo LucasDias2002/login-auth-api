@@ -1,5 +1,5 @@
 ## Descrição
-Esta é uma API desenvolvida em Java para autenticação de usuários. A API permite que os usuários se registrem, realizem login e façam uma busca pelos usuários registrados de forma segura.
+Esta é uma API Stateless desenvolvida em Java para autenticação de usuários. A API permite que os usuários se registrem, realizem login e façam uma busca pelos usuários registrados de forma segura.
 
 ## Tecnologias Utilizadas
 - Java
