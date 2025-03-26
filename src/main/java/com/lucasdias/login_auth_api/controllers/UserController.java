@@ -1,5 +1,6 @@
 package com.lucasdias.login_auth_api.controllers;
 
+import com.lucasdias.login_auth_api.dto.UsersDTO;
 import com.lucasdias.login_auth_api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity list(){
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(repository.findAll().stream()
+                .map(user -> new UsersDTO(user.getId(), user.getName(), user.getEmail())));
     }
 }
