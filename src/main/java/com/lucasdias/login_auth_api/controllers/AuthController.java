@@ -23,13 +23,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequestDTO body) {
-        User user = this.repository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("Email not found!"));
+        User user = this.repository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("Email or password invalid"));
 
         if (passwordEncoder.matches(body.password(), user.getPassword())) {
             String token = tokenService.genereteToken(user);
             return ResponseEntity.ok(new ResponseDTO(user.getName(), token));
         } else {
-            return ResponseEntity.badRequest().build();
+            throw new RuntimeException("Email or password invalid");
         }
     }
 
@@ -48,6 +48,6 @@ public class AuthController {
             String token = this.tokenService.genereteToken(newUser);
             return ResponseEntity.ok(new ResponseDTO(newUser.getName(), token));
         }
-        return ResponseEntity.badRequest().build();
+        throw new RuntimeException("Email unavailable!");
     }
 }
