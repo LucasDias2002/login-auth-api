@@ -2,6 +2,7 @@ package com.lucasdias.login_auth_api.controllers;
 
 import com.lucasdias.login_auth_api.dto.UsersDTO;
 import com.lucasdias.login_auth_api.repository.UserRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
+@SecurityRequirement(name = "bearer-key")
 @RequiredArgsConstructor
 public class UserController {
     @Autowired
@@ -19,6 +21,6 @@ public class UserController {
     @GetMapping
     public ResponseEntity list(){
         return ResponseEntity.ok(repository.findAll().stream()
-                .map(user -> new UsersDTO(user.getId(), user.getName(), user.getEmail())));
+                .map(user -> new UsersDTO(user.getId(), user.getName(), user.getEmail(), user.getPassword())));
     }
 }
