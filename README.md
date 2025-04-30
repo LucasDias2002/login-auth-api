@@ -1,20 +1,45 @@
-## Descrição
+
+# API de Autenticação - Java + Spring Boot
+
 Esta é uma API Stateless desenvolvida em Java para autenticação de usuários. A API permite que os usuários se registrem, realizem login e façam uma busca pelos usuários registrados de forma segura.
 
-## Tecnologias Utilizadas
+## 🌐 URL Pública para Testes
+
+Você pode testar a API diretamente usando o seguinte domínio:
+
+```
+http://ec2-18-191-72-7.us-east-2.compute.amazonaws.com:8080
+```
+
+### Endpoints Disponíveis
+
+| Método | Endpoint      | Descrição                     |
+|--------|---------------|-------------------------------|
+| POST   | `/auth/register` | Registro de novo usuário      |
+| POST   | `/auth/login`    | Login e geração de token JWT  |
+| GET    | `/user`          | Lista usuários cadastrados (autenticado) |
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
 - Java
 - Spring Boot
 - Spring Security
 - JWT (JSON Web Token)
-- BCrypt para hash de senhas
+- BCrypt (hash de senhas)
 - PostgreSQL
 
-## Endpoints
+---
 
-### Autenticação
+## 📑 Endpoints Detalhados
 
-#### Registro de Usuário
-**POST** `/auth/register`
+### 🔐 Autenticação
+
+#### 📥 Registro de Usuário
+
+**POST** `/auth/register`  
+🔗 URL: `http://ec2-18-191-72-7.us-east-2.compute.amazonaws.com:8080/auth/register`
 
 **Requisição:**
 ```json
@@ -33,8 +58,10 @@ Esta é uma API Stateless desenvolvida em Java para autenticação de usuários.
 }
 ```
 
-#### Login de Usuário
-**POST** `/auth/login`
+#### 🔑 Login de Usuário
+
+**POST** `/auth/login`  
+🔗 URL: `http://ec2-18-191-72-7.us-east-2.compute.amazonaws.com:8080/auth/login`
 
 **Requisição:**
 ```json
@@ -52,13 +79,17 @@ Esta é uma API Stateless desenvolvida em Java para autenticação de usuários.
 }
 ```
 
-### Usuários
+---
 
-#### Listar Usuários Registrados
-**GET** `/user`
+### 👤 Usuários
+
+#### 📋 Listar Usuários Registrados
+
+**GET** `/user`  
+🔗 URL: `http://ec2-18-191-72-7.us-east-2.compute.amazonaws.com:8080/user`
 
 **Requisição:**
-- Necessita de autenticação via token JWT.
+- Requer autenticação via JWT.
 - Cabeçalho da requisição:
   ```
   Authorization: Bearer SEU_TOKEN
@@ -80,22 +111,34 @@ Esta é uma API Stateless desenvolvida em Java para autenticação de usuários.
 ]
 ```
 
-## Como Executar
-1. Clone este repositório
+---
+
+## ▶️ Como Executar Localmente
+
+1. Clone este repositório:
    ```sh
    git clone https://github.com/LucasDias2002/login-auth-api.git
    ```
-2. Acesse a pasta do projeto
-   ```sh
-   cd NOME_DA_PASTA
-   ```
-3. Configure o banco de dados no `application.properties`
-   
-4. Por fim execute o projeto e efetue os testes.
 
-## Autenticação
-- A API utiliza JWT para autenticação
-- Todas as requisições protegidas exigem um token no cabeçalho Authorization:
+2. Acesse a pasta do projeto:
+   ```sh
+   cd login-auth-api
+   ```
+
+3. Configure o banco de dados no arquivo `application.properties`.
+
+4. Execute o projeto via sua IDE
+
+---
+
+## 🔒 Autenticação
+
+- A API utiliza JWT para autenticação.
+- Toda requisição a rotas protegidas exige um token JWT no cabeçalho:
   ```
   Authorization: Bearer SEU_TOKEN
   ```
+
+---
+
+💡 Em caso de dúvidas ou sugestões, fique à vontade para abrir uma issue ou contribuir com o projeto!
